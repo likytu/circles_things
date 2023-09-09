@@ -23,8 +23,7 @@ end
 ]]
 --
 
-local biomes_scaling_active = {}
-local biomes_exclude = {}
+local difficulty = 0
 local gui = GuiCreate()
 
 function OnWorldPreUpdate() -- This is called every time the game is about to start updating the world
@@ -94,6 +93,7 @@ function OnWorldPreUpdate() -- This is called every time the game is about to st
 	origin_y = 12
 	GuiZSet(gui, base_z)
 	GuiTooltip(gui, "text", "desc")
+	GuiText(gui, origin_x + width + 7 + 5, origin_y - 3, tostring(difficulty))
 	GuiImage(gui, 2353487, origin_x + 1, origin_y, "mods/circles_things/files/ui_gfx/scaling_bar_bg.png", 1, width - 1, 1)
 	GuiImage(gui, 2353488, origin_x, origin_y, "mods/circles_things/files/ui_gfx/scaling_bar_bg.png", 1, 1, height - 1)
 	GuiImage(gui, 2353489, origin_x + width, origin_y, "mods/circles_things/files/ui_gfx/scaling_bar_bg.png", 1, 1,
@@ -123,6 +123,9 @@ function OnModPreInit() -- This is called first for all mods
 	SessionNumbersSetValue("DESIGN_SCALE_ENEMIES", "1")
 	SessionNumbersSave()
 	GamePrint(tostring(SessionNumbersGetValue("DESIGN_SCALE_ENEMIES")))
+	local amount = tonumber(ModSettingGet("circles_things.amount"))
+	local period = tonumber(ModSettingGet("circles_things.period"))
+	difficulty = math.floor(math.pow(amount, amount) * 10 / period)
 end
 
 --[[
