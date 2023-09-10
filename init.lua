@@ -142,11 +142,7 @@ function OnMagicNumbersAndWorldSeedInitialized() -- this is the last point where
 
 end
 function OnPlayerSpawned(player_entity) -- This runs when player entity has been created
-	EntityAddComponent(player_entity, "LuaComponent", {
-		script_source_file="mods/circles_things/files/scripts/player_score.lua",
-		execute_every_n_frame="1",
-		remove_after_executed="0",
-	})
+	
 end
 --]]
 
