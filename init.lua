@@ -132,7 +132,7 @@ function OnModPreInit() -- This is called first for all mods
 	GamePrint(tostring(SessionNumbersGetValue("DESIGN_SCALE_ENEMIES")))
 	local amount = tonumber(ModSettingGet("circles_things.amount"))
 	local period = tonumber(ModSettingGet("circles_things.period"))
-	difficulty = 1000 * math.floor(math.pow(amount, 2) * math.log(amount) / period)
+	difficulty = math.floor(1000* math.pow(amount, 2) * math.log(amount) / period)
 end
 
 --[[
