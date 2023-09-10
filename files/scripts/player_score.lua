@@ -1,6 +1,0 @@
-local gui = GuiCreate()
-local amount = tonumber(ModSettingGet("circles_things.amount"))
-local period = tonumber(ModSettingGet("circles_things.period"))
-local difficulty = math.floor(math.pow(amount, amount) * 10 / period)
-local newgame_n = tonumber(SessionNumbersGetValue("NEW_GAME_PLUS_COUNT"))
-GuiText(gui, 290, 30, "Score: " .. tostring(difficulty * newgame_n))
