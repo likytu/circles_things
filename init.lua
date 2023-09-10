@@ -60,7 +60,7 @@ function OnWorldPreUpdate() -- This is called every time the game is about to st
 		SessionNumbersSetValue("DESIGN_NEW_GAME_PLUS_ATTACK_SPEED", new_enemy_attack_speed)
 		SessionNumbersSave()
 		if math.floor((time / 60)/period) ~= math.floor((time / 60 - 1)/period) then
-			GamePrint("Scaled has applied " .. tostring(times_applied).." times")
+			GamePrint("Scaling has applied " .. tostring(times_applied).." times")
 		end
 	end
 	
