@@ -1,6 +1,6 @@
 # Circle's Things(a.k.a. Enter the Gauntlet)
 ## Installation
-Download `<>Code` as zip, and extract into `/Noita/mods`. Rename the folder to `circle_things`.
+Download `<>Code` as zip, and extract into `/Noita/mods`. The folder should be called `circle_things`.
 ## Why was this made?
 This mod is intended to attend to Noita's broken difficulty curve: it is known that after a point, the game becomes relatively free and encourages heavy grinding. Inspired by Risk of Rain's time dependent enemy scaling, this mod aims to make the game exponentially more difficult with time, in an attempt to catch up to Mina.
 ## Features
