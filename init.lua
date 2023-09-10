@@ -52,7 +52,7 @@ function OnWorldPreUpdate() -- This is called every time the game is about to st
 		local amount = tonumber(ModSettingGet("circles_things.amount"))
 		local scaling_effect = math.pow(amount, times_applied)
 		
-		local new_enemy_hp_min = (1 + 4*newgame_n) * scaling_effect--(7 + ( (newgame_n-1) * 2.5 )) * scaling_effect
+		local new_enemy_hp_min = (1 + 2*math.pow(newgame_n, 2)) * scaling_effect--(7 + ( (newgame_n-1) * 2.5 )) * scaling_effect
 		local new_enemy_hp_max = new_enemy_hp_min --(25 + ( (newgame_n-1) * 10 )) * scaling_effect
 		local new_enemy_attack_speed = (math.pow( 0.5, newgame_n )) / scaling_effect
 		SessionNumbersSetValue("DESIGN_NEW_GAME_PLUS_HP_SCALE_MIN", new_enemy_hp_min)
@@ -132,7 +132,7 @@ function OnModPreInit() -- This is called first for all mods
 	GamePrint(tostring(SessionNumbersGetValue("DESIGN_SCALE_ENEMIES")))
 	local amount = tonumber(ModSettingGet("circles_things.amount"))
 	local period = tonumber(ModSettingGet("circles_things.period"))
-	difficulty = math.floor(math.pow(amount, 2) * math.log(amount) / period)
+	difficulty = 1000 * math.floor(math.pow(amount, 2) * math.log(amount) / period)
 end
 
 --[[
