@@ -45,22 +45,22 @@ function OnWorldPreUpdate() -- This is called every time the game is about to st
 	period = period * 60
 	
 	
-	
+	local newgame_n = tonumber(SessionNumbersGetValue("NEW_GAME_PLUS_COUNT"))
 	if time % 60 == 0 then
 		dofile_once("data/scripts/lib/utilities.lua")
 		local times_applied = math.floor(time/ 60 / period)
 		local amount = tonumber(ModSettingGet("circles_things.amount"))
-		local scaling_effect = math.pow(amount, times_applied) / 3
-		local newgame_n = tonumber(SessionNumbersGetValue("NEW_GAME_PLUS_COUNT"))
-		local new_enemy_hp_min = (7 + ( (newgame_n-1) * 2.5 )) * scaling_effect
-		local new_enemy_hp_max = (25 + ( (newgame_n-1) * 10 )) * scaling_effect
+		local scaling_effect = math.pow(amount, times_applied)
+		
+		local new_enemy_hp_min = (1 + 4*newgame_n) * scaling_effect--(7 + ( (newgame_n-1) * 2.5 )) * scaling_effect
+		local new_enemy_hp_max = new_enemy_hp_min --(25 + ( (newgame_n-1) * 10 )) * scaling_effect
 		local new_enemy_attack_speed = (math.pow( 0.5, newgame_n )) / scaling_effect
 		SessionNumbersSetValue("DESIGN_NEW_GAME_PLUS_HP_SCALE_MIN", new_enemy_hp_min)
 		SessionNumbersSetValue("DESIGN_NEW_GAME_PLUS_HP_SCALE_MAX", new_enemy_hp_max)
 		SessionNumbersSetValue("DESIGN_NEW_GAME_PLUS_ATTACK_SPEED", new_enemy_attack_speed)
 		SessionNumbersSave()
 		if math.floor((time / 60)/period) ~= math.floor((time / 60 - 1)/period) then
-			GamePrint("Scaled to level " .. tostring(times_applied))
+			GamePrint("Scaled has applied " .. tostring(times_applied).." times")
 		end
 	end
 	
@@ -74,7 +74,13 @@ function OnWorldPreUpdate() -- This is called every time the game is about to st
 	local width = 40.85
 	local height = 4
 	local player = EntityGetWithTag("player_unit")[1]
-	if player == nil then return end
+	if player == nil then
+		player = EntityGetWithTag("polymorphed_player")[1]
+		if player == nil then
+			GuiText(gui, 290, 30, "Score: " .. tostring(difficulty * newgame_n))
+		end
+		return
+	end
 	--[[
 	
 	local comps = EntityGetComponent(player, "DamageModelComponent")
@@ -131,13 +137,17 @@ end
 --[[
 
 -- This code runs when all mods' filesystems are registered
-function OnPlayerSpawned(player_entity) -- This runs when player entity has been created
-	--GamePrint("Player spawned")
-end
-function OnMagicNumbersAndWorldSeedInitialized() -- this is the last point where the Mod* API is available. after this materials.xml will be loaded.
-	
-end
 
+function OnMagicNumbersAndWorldSeedInitialized() -- this is the last point where the Mod* API is available. after this materials.xml will be loaded.
+
+end
+function OnPlayerSpawned(player_entity) -- This runs when player entity has been created
+	EntityAddComponent(player_entity, "LuaComponent", {
+		script_source_file="mods/circles_things/files/scripts/player_score.lua",
+		execute_every_n_frame="1",
+		remove_after_executed="0",
+	})
+end
 --]]
 
 

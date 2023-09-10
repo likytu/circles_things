@@ -12,3 +12,5 @@ To prevent stealing wands from the Tower, and to force the player to kill Kolmi 
 It now spawns above the player's spawnpoint in NG, instead of a 30 second walk away.
 ### Time-dependent enemy scaling
 Configurable in mod settings, this adds a layer of exponential difficulty to the game for only the most hardy of witches. The longer you take, the harder it gets. The mod generates an approximate relative measure of difficulty depending on your settings, where 0 has no additional time-dependent scaling. This is displayed in the top right, next to the red bar that describes the time passed since the last time-dependent scaling effect, and how soon the next one will occur.
+# References
+Zather's NXML parser: [https://github.com/zatherz/luanxml](https://github.com/zatherz/luanxml)

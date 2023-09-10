@@ -4,7 +4,7 @@ dofile("data/scripts/newgame_plus.lua")
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform( entity_id )
 local newgame_n = tonumber( SessionNumbersGetValue("NEW_GAME_PLUS_COUNT") )
-if ( newgame_n < 1) then
+--if ( newgame_n < 1) then
     GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/new_game_plus/create", x, y)
     EntityKill ( entity_id )
     GameClearOrbsFoundThisRun()
@@ -14,7 +14,7 @@ if ( newgame_n < 1) then
 	    EntitySetTransform( player_id, px, py )
     end
     AddFlagPersistent( "progress_ngplus" )
-    do_newgame_plus()
+    do_newgame_plus() --[[
 else
     EntityLoad( "data/entities/particles/image_emitters/magical_symbol_fast.xml", x, y )
 	EntityLoad( "data/entities/animals/boss_centipede/ending/midas_sand.xml", x, y )
@@ -41,3 +41,4 @@ else
 		end
 	end
 end
+--]]
