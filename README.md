@@ -18,6 +18,6 @@ Configurable in mod settings, this adds a layer of exponential difficulty to the
 ### NG+ scaling
 Reworked the current NG+ scaling to be more appropriate for players coming straight from Main Path at a fast pace. This does not mean it is easy.
 ## Bugfixes
-This mod is meant to be played as a separate gamemode. However, if you experience a bug where playing in other gamemodes still causes this mod to load, in `mod.xml`, set `is_game_mode` to `0`. This will let it act as most other mods, and can be turned off.
+This mod is meant to be played as a separate gamemode. However, if you experience a bug where playing in other gamemodes still causes this mod to load, in `/Noita/mods/circles_things/mod.xml`, set `is_game_mode` to `0`. This will let it act as most other mods, and can be turned off.
 # References
 Zather's NXML parser: [https://github.com/zatherz/luanxml](https://github.com/zatherz/luanxml)
