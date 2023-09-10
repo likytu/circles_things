@@ -25,7 +25,7 @@ end
 
 local difficulty = 0
 local gui = GuiCreate()
-
+GuiStartFrame(gui)
 function OnWorldPreUpdate() -- This is called every time the game is about to start updating the world
 	local function has_index(tab, val)
 		for index, value in pairs(tab) do
@@ -68,16 +68,19 @@ function OnWorldPreUpdate() -- This is called every time the game is about to st
 	
 	
 	local fraction = ((time / 60) % period) / period
-	local origin_x = 558
+	local gx, gy = GuiGetScreenDimensions(gui)
+	local origin_x = gx - 82
 	local base_z = 0.0
-	local origin_y = 52
+	local origin_y = 12
 	local width = 40.85
 	local height = 4
 	local player = EntityGetWithTag("player_unit")[1]
 	if player == nil then
 		player = EntityGetWithTag("polymorphed_player")[1]
 		if player == nil then
-			GuiText(gui, 290, 30, "Score: " .. tostring(difficulty * newgame_n))
+			local score = "Score: " .. tostring(difficulty * newgame_n)
+			local text_x, text_y = GuiGetTextDimensions(gui, score)
+			GuiText(gui, gx/2 - text_x/2, gy * 0.15, score)
 		end
 		return
 	end
@@ -96,9 +99,7 @@ function OnWorldPreUpdate() -- This is called every time the game is about to st
 		end
 	end
 	--]]
-	origin_y = 12
 	GuiZSet(gui, base_z)
-	GuiTooltip(gui, "text", "desc")
 	GuiText(gui, origin_x + width + 7 + 5, origin_y - 3, tostring(difficulty))
 	GuiImage(gui, 2353487, origin_x + 1, origin_y, "mods/circles_things/files/ui_gfx/scaling_bar_bg.png", 1, width - 1, 1)
 	GuiImage(gui, 2353488, origin_x, origin_y, "mods/circles_things/files/ui_gfx/scaling_bar_bg.png", 1, 1, height - 1)
