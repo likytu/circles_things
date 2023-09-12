@@ -1,18 +1,17 @@
 dofile("data/scripts/lib/mod_settings.lua") -- see this file for documentation on some of the features.
-
-
-function mod_setting_bool_custom( mod_id, gui, in_main_menu, im_id, setting )
-	local value = ModSettingGetNextValue( mod_setting_get_id(mod_id,setting) )
-	local text = setting.ui_name .. " - " .. GameTextGet( value and "$option_on" or "$option_off" )
-
-	if GuiButton( gui, im_id, mod_setting_group_x_offset, 0, text ) then
-		ModSettingSetNextValue( mod_setting_get_id(mod_id,setting), not value, false )
+dofile("mods/circles_things/files/scripts/lib/all_things_scaling.lua")
+local amount = tonumber(ModSettingGet("circles_things.amount")) or 0
+local period = tonumber(ModSettingGet("circles_things.period")) or 1
+local difficulty = get_difficulty(amount, period)
+function mod_setting_scaling_change_callback( mod_id, gui, in_main_menu, setting, old_value, new_value  )
+	if setting.id == "period" then
+		period = tonumber(new_value)
 	end
-
-	mod_setting_tooltip( mod_id, gui, in_main_menu, setting )
-end
-
-function mod_setting_change_callback( mod_id, gui, in_main_menu, setting, old_value, new_value  )
+	if setting.id == "amount" then
+		amount = tonumber(new_value)
+	end
+	difficulty = get_difficulty(amount, period)
+	mod_settings[1].settings[3].ui_name = "Difficulty Rating: "..difficulty
 	print( tostring(new_value) )
 end
 
@@ -33,6 +32,7 @@ mod_settings =
 				text_max_length = 20,
 				allowed_characters = ".0123456789",
 				scope = MOD_SETTING_SCOPE_RUNTIME,
+				change_fn=mod_setting_scaling_change_callback,
 			},
 			{
 				id = "amount",
@@ -42,6 +42,12 @@ mod_settings =
 				text_max_length = 20,
 				allowed_characters = ".0123456789",
 				scope = MOD_SETTING_SCOPE_RUNTIME,
+				change_fn=mod_setting_scaling_change_callback,
+			},
+			{
+				id = "difficulty_rating",
+				ui_name = "Difficulty Rating: "..difficulty,
+				not_setting = true,
 			},
 		},
 	},
