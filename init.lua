@@ -61,6 +61,7 @@ function OnWorldPreUpdate() -- This is called every time the game is about to st
 		SessionNumbersSave()
 		if math.floor((time / 60)/period) ~= math.floor((time / 60 - 1)/period) then
 			GamePrint("Scaling has applied " .. tostring(times_applied).." times")
+			GamePrint("New enemy hp min: " .. tostring(new_enemy_hp_min))
 		end
 	end
 	
