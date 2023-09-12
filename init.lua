@@ -48,7 +48,7 @@ function OnWorldPreUpdate() -- This is called every time the game is about to st
 	local newgame_n = tonumber(SessionNumbersGetValue("NEW_GAME_PLUS_COUNT"))
 	if time % 60 == 0 then
 		dofile_once("data/scripts/lib/utilities.lua")
-		local times_applied = math.floor(time/ 60 / period)
+		local times_applied = math.floor(time/ 60 / period) + 1
 		local amount = tonumber(ModSettingGet("circles_things.amount"))
 		local scaling_effect = math.pow(amount, times_applied)
 		
