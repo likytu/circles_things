@@ -52,7 +52,7 @@ function OnWorldPreUpdate() -- This is called every time the game is about to st
 		local amount = tonumber(ModSettingGet("circles_things.amount"))
 		local scaling_effect = math.pow(amount, times_applied)
 		local max_scaling = 1.5*10^308
-		local new_enemy_hp_min = math.min(aget_scaling_effect_hp(newgame_n, scaling_effect), max_scaling)
+		local new_enemy_hp_min = math.min(get_scaling_effect_hp(newgame_n, scaling_effect), max_scaling)
 		local new_enemy_hp_max = new_enemy_hp_min --(25 + ( (newgame_n-1) * 10 )) * scaling_effect
 		local new_enemy_attack_speed = get_scaling_effect_attack_speed(newgame_n, scaling_effect)
 		SessionNumbersSetValue("DESIGN_NEW_GAME_PLUS_HP_SCALE_MIN", new_enemy_hp_min)
