@@ -19,6 +19,10 @@ function calculate_force_radial(body_x, body_y)
 	return fx, fy
 end
 
+local function is_close(ex, ey, px, py)
+	return math.abs(ex - px) < 256 and math.abs(ey - py) < 256
+end
+
 function mysplit(inputstr, sep)
 	if sep == nil then
 		sep = "%s"
@@ -63,7 +67,7 @@ end
 local projectiles = EntityGetInRadiusWithTag(x, y, distance_full, "projectile")
 for _, id in ipairs(projectiles) do
 	local px, py = EntityGetTransform(id)
-	if math.abs(px - x) < 256 and math.abs(py - y) < 256 then
+	if is_close(x, y, px, py) then
 		EntityKill(id)
 	else
 		local physicscomp = EntityGetFirstComponent(id, "PhysicsBody2Component") or
@@ -152,9 +156,18 @@ PhysicsApplyForceOnArea(calculate_force_for_body, entity_id, x - size, y - size,
 
 if not is_in_camera_bounds(x, y, 300) then return end
 local player = EntityGetWithTag("player_unit")[1]
-if player == nil then return end
 local px, py = EntityGetTransform(player)
-if math.abs(x - px) < 256 and math.abs(y - py) < 256 and GameGetFrameNum() % 60 == 0 then
-	local neuter = EntityLoad("mods/circles_things/files/entities/misc/barrier_rock_neuter.xml")
-	EntityAddChild(player, neuter)
+if player ~= nil then
+	if is_close(x, y, px, py) and GameGetFrameNum() % 60 == 0 then
+		local neuter = EntityLoad("mods/circles_things/files/entities/misc/barrier_rock_neuter.xml")
+		EntityAddChild(player, neuter)
+	end
+else
+	player = EntityGetWithTag("polymorphed_player")[1]
+	px, py = EntityGetTransform(player)
+end
+if player == nil then return end
+if is_close(x, y, px, py) then
+	EntityInflictDamage( player, 500, "DAMAGE_CURSE", "The gods dislike trespassers", "DISINTEGRATED", 0, 0, entity_id )
+	EntityKill(player)
 end

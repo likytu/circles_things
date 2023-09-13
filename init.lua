@@ -133,7 +133,8 @@ function OnModPreInit() -- This is called first for all mods
 	GamePrint(tostring(SessionNumbersGetValue("DESIGN_SCALE_ENEMIES")))
 	local amount = tonumber(ModSettingGet("circles_things.amount"))
 	local period = tonumber(ModSettingGet("circles_things.period"))
-	difficulty = get_difficulty(amount, period)
+	local removed_immunities = ModSettingGet("circles_things.immunities")
+	difficulty = get_difficulty(amount, period, removed_immunities)
 end
 
 --[[
@@ -158,3 +159,4 @@ content = content:gsub("\r", "")
 content = content:gsub("\n\n", "\n")
 ModTextFileSetContent("data/translations/common.csv", content)
 --print("Example mod init done")
+ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/circles_things/files/scripts/perk_changes.lua")
