@@ -1,0 +1,5 @@
+dofile_once("mods/circles_things/files/scripts/change_data/change_biome_map_newgame_plus_lua.lua")
+dofile_once("mods/circles_things/files/scripts/change_data/change_boss_arena_lua.lua")
+dofile_once("mods/circles_things/files/scripts/change_data/change_boss_victoryroom_lua.lua")
+dofile_once("mods/circles_things/files/scripts/change_data/change_pixel_scenes_xml.lua")
+dofile_once("mods/circles_things/files/scripts/change_data/change_temple_altar_lua.lua")

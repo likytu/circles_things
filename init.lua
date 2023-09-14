@@ -127,7 +127,7 @@ function OnWorldInitialized() -- This is called once the game world is initializ
 end
 
 function OnModPreInit() -- This is called first for all mods
-	ModMaterialsFileAdd("mods/circles_things/data/circles_materials.xml")
+	ModMaterialsFileAdd("mods/circles_things/files/circles_materials.xml")
 	SessionNumbersSetValue("DESIGN_SCALE_ENEMIES", "1")
 	SessionNumbersSave()
 	GamePrint(tostring(SessionNumbersGetValue("DESIGN_SCALE_ENEMIES")))
@@ -159,4 +159,5 @@ content = content:gsub("\r", "")
 content = content:gsub("\n\n", "\n")
 ModTextFileSetContent("data/translations/common.csv", content)
 --print("Example mod init done")
-ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/circles_things/files/scripts/perk_changes.lua")
+ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/circles_things/files/scripts/change_data/change_perk_list_lua.lua") --do not include this script in change_data.lua
+dofile_once("mods/circles_things/files/scripts/change_data/change_data.lua")

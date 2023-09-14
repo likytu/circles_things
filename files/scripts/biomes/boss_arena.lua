@@ -170,8 +170,8 @@ function spawn_cheap_shopitem( x, y )
 end
 
 function spawn_all_shopitems( x, y )
-	local newgame_n = tonumber( SessionNumbersGetValue( "NEW_GAME_PLUS_COUNT") )
 	local spawn_shop, spawn_perks = temple_random( x, y )
+	local newgame_n = tonumber( SessionNumbersGetValue( "NEW_GAME_PLUS_COUNT") )
 	local biomes =
 	{
 		[1] = 0,

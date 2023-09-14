@@ -6,6 +6,6 @@
 	"previewfile"		"/home/blakeocallahan/.steam/steam/steamapps/common/Noita/mods/circles_things/workshop_preview_image.png"
 	"visibility"		"0"
 	"title"		"Enter The Gauntlet"
-	"description"		"Extends the exponential power growth of the Main Path... forever, fixing Noita's ridiculous difficulty curve. Please note that you can change the default time-scaling in the Mod Settings. iDetails: https://github.com/scrying-circle/circles_things"
-	"changenote"		"typo"
+	"description"		"Extends the exponential power growth of the Main Path... forever, fixing Noita's ridiculous difficulty curve. This mod is intended for those who have completed all or most of the game content, and so find long runs stale. Please note that you can change the default time-scaling in the Mod Settings. Details: https://github.com/scrying-circle/circles_things"
+	"changenote"		"shops are now more random, and tend to increase in tier for higher ng+. option to remove immunities from the pool for more difficulty. barrier rock biome now instantly kills you if you go in. next steps: finding more ways to buff enemies that arent just hp and attack speed."
 }
